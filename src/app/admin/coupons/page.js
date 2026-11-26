@@ -1,0 +1,6 @@
+'use client';
+import { ResourcePage } from '@/components/admin/ui';
+export default function P() {
+  return <ResourcePage title="Coupons" path="coupons" blank={{ type: 'PERCENT' }} fields={[{ name: 'code', label: 'Code', required: true }, { name: 'type', label: 'Type', type: 'select', options: ['PERCENT', 'FIXED'] }, { name: 'value', label: 'Value (% or ৳)', type: 'number', required: true }, { name: 'minOrder', label: 'Minimum order ৳', type: 'number' }, { name: 'maxDiscount', label: 'Max discount ৳', type: 'number' }, { name: 'usageLimit', label: 'Usage limit', type: 'number' }, { name: 'startsAt', label: 'Starts', type: 'date' }, { name: 'expiresAt', label: 'Expires', type: 'date' }, { name: 'active', label: 'Active', type: 'checkbox' }]}
+    columns={[{ label: 'Code', key: 'code' }, { label: 'Discount', render: (r) => (r.type === 'PERCENT' ? `${Number(r.value)}%` : `${Number(r.value)}৳`) }, { label: 'Min order', render: (r) => Number(r.minOrder) }, { label: 'Used', render: (r) => `${r.used}${r.usageLimit ? ` / ${r.usageLimit}` : ''}` }, { label: 'Expires', render: (r) => (r.expiresAt ? r.expiresAt.slice(0, 10) : '—') }, { label: 'Active', render: (r) => (r.active ? 'Yes' : 'No') }]} />;
+}
